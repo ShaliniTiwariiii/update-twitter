@@ -1,0 +1,85 @@
+.maindiv{
+   height: 25rem;
+   width: 43rem;
+   margin-top: 2rem;
+   border-bottom: 1.5px solid black;
+   display: flex;
+   flex-direction: column;
+   /*padding-top: 1rem;*/
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+   
+ }
+ .picdiv{
+   height: 5rem;
+   width: 10rem;
+   border: 6px;
+ }
+ .btns{
+   height: 3rem;
+   width: 3rem;
+   border: none;
+   background: white;
+}
+img{
+   height: 16rem;
+   
+} 
+
+.profile{
+   height: 5rem;
+   width: 5rem;
+   margin-top: -17rem;
+   margin-left: -30rem;
+   
+   position: absolute;
+
+}
+
+.mainDiv{
+   height: 11rem;
+}
+.Photo1{
+   height: 3rem;
+   width: 3rem;
+   border-radius: 100%;
+   margin-top: 0.5rem;
+   margin-left: 1rem;
+}
+.Icons{
+   color:#1D9BFD;
+   margin-left: 4rem;
+   display: flex;
+gap: 2rem;
+}
+.inputs{
+   width: 30rem;
+   height: 3rem;
+margin-left: 5rem;
+margin-top: -2rem;
+border: none;
+overflow:hidden;
+}
+.inputs::placeholder{
+   font-size: 20px;
+   font-weight: 500;
+
+}
+.BTN{
+   display:flex;
+   align-items: flex-end;
+   
+   justify-content: end;
+}
+.btn{
+ margin-top:-2rem;
+ height: 2rem;
+ width: 4.5rem;
+ border-radius: 25px;
+ background-color: #1D9BFD;
+ border: none;
+ color: white;
+ font-weight: 600;
+}
