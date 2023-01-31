@@ -47,6 +47,9 @@
    border: none;
    background: white;
 }
+.btns:focus{
+ 
+}
 img{
    height: 16rem;
    

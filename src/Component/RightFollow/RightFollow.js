@@ -78,51 +78,34 @@ import { Avatar } from '@mui/material';
 import React, { useState } from 'react'
 import Buttons from '../../Atom/Button/Buttons';
 import style from './RightFollow.module.css'
+import { Follow } from '../../const';
 // import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 function RightFollow() {
+  const [trending, setTrendings] = useState(Follow.slice(0, 2));
+  const [isShowingAllTrendings, setIsShowingAllTrendings] = useState(false);
     const handleClick = (id) => {
-        const updatedFollowContainer = followContainer.map((item) => {
+        const updatedFollowContainer = Follow.map((item) => {
           if (item.id === id) {
             item.followed = !item.followed;
           }
           return item;
         });
-        setFollowContainer(updatedFollowContainer);
+        // setFollowContainer(updatedFollowContainer);
+        setTrendings(updatedFollowContainer)
       };
-      const [followContainer, setFollowContainer] = useState([
-        {
-          id: 1,
-         
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjj_oz7crwHtUQj0jJuvLq-ILk5oikP_3FFL-mDJqk&s",
-          text: "virat",
-          text2: "virat@gmail.com",
-        },
-        {
-          id: 2,
-        
-          src: "https://www.cricketsoccer.com/wp-content/uploads/2020/09/i.jpg",
-          text: "Rohit",
-          text2: "rohits@gmail.com",
-        },
-        {
-          id: 3,
-        
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjj_oz7crwHtUQj0jJuvLq-ILk5oikP_3FFL-mDJqk&s",
-          text: "Mahi",
-          text2: "virat@gmail.com",
-        },
-        {
-          id: 4,
-   
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjj_oz7crwHtUQj0jJuvLq-ILk5oikP_3FFL-mDJqk&s",
-          text: "virat",
-          text2: "virat@gmail.com",
-        },
-      ]);
+      
+      function handleRequestSeeAll() {
+        setIsShowingAllTrendings(!isShowingAllTrendings);
+       
+        if (isShowingAllTrendings) {
+          return setTrendings(Follow.slice(0, 2));
+        }
+        setTrendings(Follow);
+      }
   return (
     <div className={style.mainParent}>
     <h2>  Who to follow</h2>
-     {followContainer.map((data)=>
+     {trending.map((data)=>
      <div className={style.wrapper}>
                   
                     <div className={style.img}>
@@ -142,8 +125,14 @@ function RightFollow() {
        </div> 
        </div>
      )}
-      <div style={{marginLeft:"1.3rem",color:"#1D9BF0"}}>Show more</div>
+      {/* <div style={{marginLeft:"1.3rem",color:"#1D9BF0"}}>Show more</div> */}
+      { (
+        <div style={{marginLeft:"1.3rem",color:"#1D9BF0"}} onClick={handleRequestSeeAll}>
+          {isShowingAllTrendings ? "Show Less" : "Show More"}
+        </div>
+      )}
     </div>
+ 
   )
 }
 

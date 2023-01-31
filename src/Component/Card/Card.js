@@ -18,14 +18,19 @@ import { FiShare } from "react-icons/fi";
 import { MdOutlinePoll } from "react-icons/md";
 
 export default function Card() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(100);
   const [open, setOpen] = useState(false);
   const [tweetText, setTweetText] = useState("");
   const [post, setPost] = useState(tweetPosts);
   const inputRef = useRef(null);
   const [image, setImage] = useState("");
-  function Count() {
-    setCount(count + 1);
+  function addCount() {
+    if(count===100){
+      setCount(101)
+      
+    }
+    else if (count==101)
+setCount(100)
   }
   const handleClickOpen = () => {
     setOpen(true);
@@ -174,7 +179,7 @@ export default function Card() {
               updateId(tweetPost.id);
             }}
             className={style.btns}
-            image={<CiHeart style={{ fontSize: "15px" }} />}
+            image={<CiHeart style={{ fontSize: "15px" }}  onClick={addCount}/>}
           />
           {count}</div>
           <Buttons
