@@ -72,6 +72,7 @@
     width:20rem;
     height:3rem;
     border-radius :3px;
+  
 }
 .date{
     display:flex;
@@ -82,7 +83,7 @@
     width:20rem;
     height:3rem;
     border-radius :3px;
-    margin-top: rem;
+    margin-top: -1rem;
 }
 .toggle{
     color:#1D9BF0;
@@ -97,4 +98,4 @@
         width:auto;
         height:auto;
     }
-}
+} 

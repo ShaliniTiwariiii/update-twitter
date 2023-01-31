@@ -280,3 +280,34 @@ export const tweetPosts = [
       Tweets: "Trending with BAAP OF ALL EPISODES",
     },
   ];
+
+ export const Follow= [
+    {
+      id: 1,
+     
+      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjj_oz7crwHtUQj0jJuvLq-ILk5oikP_3FFL-mDJqk&s",
+      text: "virat",
+      text2: "virat@gmail.com",
+    },
+    {
+      id: 2,
+    
+      src: "https://www.cricketsoccer.com/wp-content/uploads/2020/09/i.jpg",
+      text: "Rohit",
+      text2: "rohits@gmail.com",
+    },
+    {
+      id: 3,
+    
+      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjj_oz7crwHtUQj0jJuvLq-ILk5oikP_3FFL-mDJqk&s",
+      text: "Mahi",
+      text2: "virat@gmail.com",
+    },
+    {
+      id: 4,
+
+      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjj_oz7crwHtUQj0jJuvLq-ILk5oikP_3FFL-mDJqk&s",
+      text: "virat",
+      text2: "virat@gmail.com",
+    },
+  ];

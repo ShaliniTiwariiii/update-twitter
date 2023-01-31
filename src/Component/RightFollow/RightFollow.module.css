@@ -1,4 +1,4 @@
- /* .mainParent{
+  .mainParent{
     margin-left:2rem;
     width:23rem;
     background-color: #EFF1F1;
@@ -23,13 +23,14 @@
   padding-top: 1rem;
   
   width: 16rem;
+  
 }
 .followButton{
     border-radius: 20px;
     height: 1.875rem;
     display: flex;
     /* margin-left: 4rem; */
-    /*
+    
 align-items: center;
 background-color: black;
 color: white;
@@ -43,7 +44,7 @@ h6{
     margin-left: 3.5rem;
     margin-top: -1.3rem;
     color:#536471 ;
-} */
+} 
 
 
 
@@ -53,7 +54,7 @@ h6{
     background-color: #EFF1F1;
     border-radius: 25px;
     /* border: 2px solid red; */
-    height: 26rem;
+    /* height: 26rem; */
 
 }
 
@@ -85,14 +86,14 @@ h6{
     height: 1.875rem;
     display: flex;
     /* margin-left: 4rem; */
-    
-align-items: center;
+    align-items: center;
 background-color: black;
 color: white;
 }
-h3{
+
+  h3{
     /* padding-top:1.3rem; */
-    color: #0F1419;
+     color: #0F1419;
     margin-top: -2.5rem;
     margin-left: 3rem;
 } 
@@ -101,4 +102,6 @@ h6{
     margin-left: 3.5rem;
     margin-top: -1.3rem;
     color:#536471 ;
-}
+}  
+
+
