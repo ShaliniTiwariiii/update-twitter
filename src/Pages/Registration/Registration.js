@@ -566,7 +566,7 @@ export default function Registration() {
       return
     }
 
-    info.push(data)
+    info.unshift(data)
     setInfo(info)
     localStorage.setItem("UserDetail", JSON.stringify(info))
     alert("succesfully registered!")

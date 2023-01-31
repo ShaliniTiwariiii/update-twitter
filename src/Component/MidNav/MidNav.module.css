@@ -3,7 +3,7 @@
     border: 1px solid lightgray;
     position: sticky;
     z-index: 9;
-   
+    backdrop-filter: blur(12px);
 }
 h2{
     padding-left: 16px;

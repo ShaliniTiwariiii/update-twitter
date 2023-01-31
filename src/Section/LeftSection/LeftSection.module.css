@@ -74,10 +74,17 @@ background-color:lightgray;
     width: 35rem;
     overflow-x: hidden;
     height: 10rem;
-    border: 2px solid white;
+    outline: none;
+    border: none;
    
 }
-
+.Photo1{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 100%;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+ }
 .btnTweet{
 
     background-color:   #00acee;

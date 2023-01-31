@@ -7,7 +7,8 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import HomeIcon from "@mui/icons-material/Home"; 
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined"; 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import {Link} from "react-router-dom";
+import {Link,useNavigate} from "react-router-dom";
+const navigate=useNavigate
 export const arrs = [
         { icon: <HomeIcon style={{ fontSize: "28px" }} />, text: <Link to="/">Home </Link>},
         { icon: <TagSharpIcon style={{ fontSize: "28px" }} />, text: "Explore" },
@@ -36,6 +37,7 @@ export const arrs = [
 
 export const tweetPosts = [
     {
+      id:1,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "The White House",
       handlerName: "@The White House",
@@ -53,6 +55,7 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
+      id:2,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "Mukund",
       handlerName: "@kumarmukund",
@@ -71,6 +74,7 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
+      id:3,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "Usain St. Leo Bolt",
       handlerName: "@usainbolt",
@@ -88,6 +92,7 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
+      id:4,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "Andrew Elliott",
       handlerName: "@andrewje_home",
@@ -105,6 +110,7 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
+      id:5,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "RVCJ Media",
       handlerName: "@RVCJ_FB",
@@ -123,6 +129,7 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
+      id:6,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "BJP",
       handlerName: "@BJP4India",
@@ -141,6 +148,7 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
+      id:7,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "Sudarsan Pattnaik",
       handlerName: "@sudarsansand",
@@ -159,6 +167,7 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
+      id:8,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "Arvind Kumar",
       handlerName: "@arvindtw",
@@ -178,6 +187,7 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
+      id:9,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "kimkk",
       handlerName: "@ippittipapitti",
@@ -198,7 +208,8 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
-      profile: <AccountCircleIcon />,
+      id:10,
+      profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "Dainik Bhaskar",
       handlerName: "@DainikBhaskar",
       organization: "Tv News",
@@ -217,6 +228,7 @@ export const tweetPosts = [
       joinedDate: "22 dec 2022",
     },
     {
+      id:11,
       profile: <AccountCircleIcon style={{ fontSize: "50px" }} />,
       name: "Madhya Pradesh Tourism",
       handlerName: "@MPTourism",
@@ -233,5 +245,38 @@ export const tweetPosts = [
       followers: 200,
       followings: 400,
       joinedDate: "22 dec 2022",
+    },
+  ];
+  export const Trending=[
+    {
+      id: 1,
+      Trends: "Entertainment · Trending",
+      Hash: "#PushpaTheRule",
+      Tweets: "31.4K Tweets",
+    },
+    {
+      id: 2,
+      Trends: "Trending in India",
+      Hash: "#बागेश्वर_धाम_सरकार",
+      Tweets: "Trending with #BageshwarDham",
+    },
+    {
+      id: 3,
+      Trends: "Trending in Pakistan",
+      Hash: "#पाकिस्तान युद्ध",
+      Tweets: "Tehreeke taliban pakistan on fire",
+    },
+    {
+      id: 4,
+      Trends: "Trending in India",
+      Hash: "#PawanKalyanOnAHA",
+      Tweets: "Trending with BAAP OF ALL EPISODES",
+    },
+    {
+      id: 5,
+
+      Trends: "Trending in India",
+      Hash: "#PawanKalyanOnAHA",
+      Tweets: "Trending with BAAP OF ALL EPISODES",
     },
   ];
