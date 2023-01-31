@@ -13,12 +13,14 @@
    
  }
  .namecss{
+   /* border:2px solid red; */
  display:flex;
  align-items:center;
  gap:.3rem;
  margin-top:-4.5rem;
  text-align: left;
- margin-right: 10rem;
+ /* margin-right: 10rem; */
+ margin-left: -7rem;
  }
  .para{
    display: flex;
@@ -54,6 +56,7 @@ img{
 
 
 .profile{
+   /* border: 2px solid red; */
    height: 5rem;
    width: 5rem;
    margin-right:30rem;

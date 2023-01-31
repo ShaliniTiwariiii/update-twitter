@@ -142,7 +142,12 @@ function RightFollow() {
        </div> 
        </div>
      )}
-      <div style={{marginLeft:"1.3rem",color:"#1D9BF0"}}>Show more</div>
+      {/* <div style={{marginLeft:"1.3rem",color:"#1D9BF0"}}>Show more</div> */}
+      { (
+        <div style={{marginLeft:"1.3rem",color:"#1D9BF0"}} onClick={handleRequestSeeAll}>
+          {isShowingAllTrendings ? "Show Less" : "Show More"}
+        </div>
+      )}
     </div>
   )
 }

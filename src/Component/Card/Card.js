@@ -18,15 +18,16 @@ import { FiShare } from "react-icons/fi";
 import { MdOutlinePoll } from "react-icons/md";
 
 export default function Card() {
-  const [count, setCount] = useState(0);
+  let count=0
+  // const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
   const [tweetText, setTweetText] = useState("");
   const [post, setPost] = useState(tweetPosts);
   const inputRef = useRef(null);
   const [image, setImage] = useState("");
-  function Count() {
-    setCount(count + 1);
-  }
+  // function Count(){
+  //   setCount(count+1)
+  // }
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -83,6 +84,13 @@ export default function Card() {
   }
   const [selectedId, setSelectedId] = useState(null);
   const updateId=(id)=>setSelectedId(id)
+  console.log(selectedId)
+  function Count(){
+  tweetPosts.forEach((x)=>{
+  if(x.id===selectedId){
+    count=count++
+  }}
+  )}
   
   return (
     <>
@@ -125,8 +133,10 @@ export default function Card() {
       {post.map((tweetPost) => {
         return (
           <>
-            <div key={tweetPost.id} className={style.maindiv}>
-              <div className={style.profile}>{tweetPost.profile}</div>
+            <div key={tweetPost.id} className={style.maindiv}  onClick={() => {
+              updateId(tweetPost.id);
+            }}>
+              <span className={style.profile}>{tweetPost.profile}</span>
               <div className={style.namecss}>
                 <div style={{ fontWeight: "700", fontSize: "15px" }}>
                   {tweetPost.name}
@@ -136,7 +146,7 @@ export default function Card() {
                 {tweetPost.handlerName}
                 {/* </span> */}
               </div>
-              <p className={style.paraorg}>{tweetPost.organization}</p>
+              {/* <p className={style.paraorg}>{tweetPost.organization}</p> */}
               <p className={style.para}>{tweetPost.tweetText}</p>
               <div>
                 {<img src={tweetPost.tweetPic} className={style.picdiv} />}
@@ -159,29 +169,29 @@ export default function Card() {
           </DialogActions>
         </Dialog>
         <div className={style.socialbtn}>
-          <Buttons
+          <div><Buttons
             className={style.btns}
             btnNext={handleClickOpen}
             image={<FaRegComment style={{ fontSize: "15px" }} />}
-          />
+          />{tweetPost.tweetCount}</div>
+          <div>
           <Buttons
             className={style.btns}
             image={<AiOutlineRetweet style={{ fontSize: "15px" }} />}
-          />
+          />{tweetPost.retweetCount}</div>
           <div>
           <Buttons
-             btnNext={() => {
-              updateId(tweetPost.id);
-            }}
+            btnNext={Count}
             className={style.btns}
             image={<CiHeart style={{ fontSize: "15px" }} />}
           />
           {count}</div>
-          <Buttons
+          <div><Buttons
             className={style.btns}
             image={<MdOutlinePoll style={{ fontSize: "15px" }} />}
-          />
-
+          />{tweetPost.viewsCount}</div>
+          
+            
           <Buttons
             className={style.btns}
             image={<FiShare style={{ fontSize: "15px" }} />}
