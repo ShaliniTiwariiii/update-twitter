@@ -3,17 +3,19 @@ import style from "./LeftSection.module.css";
 import Buttons from "../../Atom/Button/Buttons";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { arrs } from "../../const";
-import photo from "../../Assets/photo.jpg";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import { useState } from "react";
 import PopOver from "../../Atom/PopOver/PopOver";
 import { Link } from "react-router-dom";
 import { tweetPosts } from "../../const";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { isTweetPost, newtweet } from "../../Recoil/atom";
+import { useRecoilState, useSetRecoilState } from "recoil";
 function LeftSection() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [tweet, setTweet] = useState("");
+  const [loginStatus,setLoginStatus] = useRecoilState(isTweetPost)
+  const [tweets,setTweets]=useRecoilState(newtweet)
   const list = JSON.parse(localStorage.getItem("UserDetail"));
   function handleChange(e) {
     setTweet(e.target.value);
@@ -24,13 +26,11 @@ function LeftSection() {
   };
 
   const handleClose = () => {
+    
     const obj = {
-      id:Math.random(),
-      profile: (
-        <img
-          src="https://www.imgstatus.com/wp-content/uploads/2019/11/Whastapp-Dp-Joker.jpg"
-          className={style.Photo1}
-        />
+      id: Math.random(),
+      profile: ("https://www.imgstatus.com/wp-content/uploads/2019/11/Whastapp-Dp-Joker.jpg"
+          
       ),
       name: list[0].name,
       handlerName: "@" + list[0].email,
@@ -46,11 +46,17 @@ function LeftSection() {
       followings: 400,
       joinedDate: "22 dec 2022",
     };
-    if(obj.tweetText!==""){
-    tweetPosts.unshift(obj)
+    setOpen(false);
+    if (obj.tweetText !== "") {
+      tweetPosts.unshift(obj);
+     
     }
-    setOpen("")
-    setOpen(false)
+   
+    setTweets(tweets.unshift(obj))
+    setLoginStatus(loginStatus+1)
+    setTweet("");
+    
+    
   };
   // console.log(storeTweet)
 

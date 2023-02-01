@@ -3,12 +3,14 @@ import style from "./ProfileSection.module.css";
 import { useNavigate } from "react-router-dom";
 import WestIcon from "@mui/icons-material/West";
 import Buttons from "../../Atom/Button/Buttons";
+import { newtweet } from "../../Recoil/atom";
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import { useRecoilState, useRecoilValue } from "recoil";
 function ProfileSection() {
   const nevigate = useNavigate();
   const Data=JSON.parse(localStorage.getItem("UserDetail"))
-  // const Data = "Harsh";
-
+  let tweets=useRecoilValue(newtweet)
+  console.log(tweets)
   return (
     <>
       <div className={style.wrapper}>
@@ -16,9 +18,9 @@ function ProfileSection() {
           <span onClick={() => nevigate("/")}>
             <WestIcon />
           </span>
-          <div >
+          <div className={style.dta}>
           <span>{Data[0].name}</span>
-          <p>0 Tweet</p></div>
+          <span style={{fontWeight:"100",fontSize:"15px"}}>{tweets.length} Tweet</span></div>
         </div>
         <img
           className={style.container}
@@ -47,9 +49,14 @@ function ProfileSection() {
         <span>Tweets&replies</span>
         <span>Media</span>
         <span>Likes</span>
+        {tweets.map((x)=>{
+        return(
+        <h1>{x.tweetText}</h1>)
+      })}
         </div>
       </div>
       
+      {/* <h1>hii how are you</h1> */}
     </>
   );
 }
