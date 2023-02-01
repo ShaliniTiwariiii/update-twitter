@@ -7,18 +7,24 @@
    flex-direction: column;
    /*padding-top: 1rem;*/
   align-items: center;
-  justify-content: center;
-  position: relative;
+  justify-content: flex-start;
+  /* position: relative; */
   /* border:1px solid red; */
+   
+ }
+ .container{
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   gap:1rem;
    
  }
  .namecss{
  display:flex;
- align-items:center;
- gap:.3rem;
- margin-top:-4.5rem;
- text-align: left;
- margin-right: 10rem;
+ margin-left: 3.7rem;
+ margin-top: -5.5rem;
+ align-items: center;
+ gap:rem;
  }
  .para{
    display: flex;
@@ -54,13 +60,31 @@ img{
    height: 16rem;
    
 } 
+.btnTweet{
 
+   background-color:   #00acee;
+   border: white;
+   color: white;
+   border-radius: 20px;
+   font-size: larger;
 
+}
+.ForTweet{
+   width: 35rem;
+   overflow-x: hidden;
+   height: 10rem;
+   outline: none;
+   border: none;
+  
+}
 .profile{
-   height: 5rem;
-   width: 5rem;
-   margin-right:30rem;
+   /* display: flex;
+    */
+   height: 3rem;
+   width: 3rem;
+   /* margin-right:30rem; */
    border-radius: 100%;
+   margin-left: -6rem;
 }
 .socialbtn{
    display: flex;
@@ -114,3 +138,6 @@ overflow:hidden;
  color: white;
  font-weight: 600;
 }
+/* .avatar{
+   z-index: -1;
+} */

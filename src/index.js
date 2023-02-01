@@ -13,6 +13,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Profile from './Pages/Profile/Profile';
+import Profile2 from './Pages/Profile2/Profile2';
+import Tweetpage from './Pages/Tweetreply/Tweetreply';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
   {
     path:"/profile",
     element:<Profile/>,
+  },
+  {
+    path:"/publicpage",
+    element:<Profile2/>,
+  },
+  {
+    path:"/Tweetpage",
+    element:<Tweetpage/>,
   }
 ]);
 

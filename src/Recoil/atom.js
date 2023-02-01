@@ -8,3 +8,33 @@ export const isLoginAtom = atom({
 //     key:'tweetData',
 //     default: {}
 // })
+export const isTweetPost = atom({
+    key: "isPost",
+    default: 0,
+  });
+  
+
+  export const userProfile = atom({
+    key: "userProfile",
+    default: {},
+  });
+  
+  
+  export const isTweet = atom({
+    key: "isTweet",
+    default: 0,
+  });
+  
+  export const userTweet = atom({
+    key: "userTweet",
+    default: {},
+  });
+  
+  export const userTweetProfile = atom({
+    key: "userTweetProfile",
+    default: {},
+  });
+  export const newtweet = atom({
+    key:"tweets",
+    default:[],
+  })

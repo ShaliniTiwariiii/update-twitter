@@ -10,13 +10,14 @@
 display: flex;
 flex-direction: row;
 position: sticky;
+;
 }
 .midDiv{
     display: flex;
     flex-direction: row;
 }
-.rrightDiv{
-    display: flex;
-    flex-direction: row;
+.rightDiv{
+    /* display: flex; */
+    /* flex-direction: row; */
     position: sticky;
 }

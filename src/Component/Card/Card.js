@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import style from "./Card.module.css";
 import { CiHeart } from "react-icons/ci";
 import { FaRegComment } from "react-icons/fa";
@@ -16,6 +16,10 @@ import { GoVerified } from "react-icons/go";
 // import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import { FiShare } from "react-icons/fi";
 import { MdOutlinePoll } from "react-icons/md";
+import { isTweetPost, newtweet, userProfile } from "../../Recoil/atom";
+import { useRecoilState } from "recoil";
+import { useNavigate} from "react-router-dom";
+import { Avatar } from "@mui/material";
 
 export default function Card() {
   const [count, setCount] = useState(100);
@@ -24,6 +28,7 @@ export default function Card() {
   const [post, setPost] = useState(tweetPosts);
   const inputRef = useRef(null);
   const [image, setImage] = useState("");
+<<<<<<< HEAD
   function addCount() {
     if(count===100){
       setCount(101)
@@ -31,6 +36,28 @@ export default function Card() {
     }
     else if (count==101)
 setCount(100)
+=======
+  const nevigate = useNavigate();
+  const [newPost, setNewPost] = useRecoilState(isTweetPost);
+  const [newProfile, setNewProfile] = useRecoilState(userProfile);
+  const [tweets,setTweets]=useRecoilState(newtweet)
+  useEffect(() => {
+    fetchData();
+  },[newPost]);
+
+  function fetchData() {
+    setPost(tweetPosts);
+  }
+
+  function xyz(dataName) {
+    setNewProfile(dataName);
+    nevigate("/publicpage");
+  }
+  function addCount() {
+    if (count === 100) {
+      setCount(101);
+    } else if (count == 101) setCount(100);
+>>>>>>> 1ce1414c5e4727caa79e7fd802411656ebb0d08d
   }
   const handleClickOpen = () => {
     setOpen(true);
@@ -56,14 +83,10 @@ setCount(100)
     reader.readAsDataURL(e.target.files[0]);
   }
   function SubmitTweet() {
+    
     const obj = {
-      id:Math.random(),
-      profile: (
-        <img
-          src="https://www.imgstatus.com/wp-content/uploads/2019/11/Whastapp-Dp-Joker.jpg"
-          className={style.Photo1}
-        />
-      ),
+      id: Math.random(),
+      profile:"https://www.imgstatus.com/wp-content/uploads/2019/11/Whastapp-Dp-Joker.jpg" ,
       name: list[0].name,
       handlerName: "@" + list[0].email,
       organization: "",
@@ -71,7 +94,7 @@ setCount(100)
       tweetPic: image,
       tweetCount: 100,
       retweetCount: 100,
-      likesCount: 100,
+      likesCount: 0,
       viewsCount: "102k",
       followers: 200,
       followings: 400,
@@ -79,16 +102,21 @@ setCount(100)
     };
 
     if (obj.tweetText !== "") {
-      setPost([obj, ...tweetPosts]);
+      setPost([obj,...tweetPosts]);
       tweetPosts.unshift(obj);
     }
+   
+   
     setTweetText("");
+    setTweets([obj,...tweets])
     setImage("");
-    inputRef.current.value=""
+    inputRef.current.value = "";
+    
   }
+  console.log(tweets)
   const [selectedId, setSelectedId] = useState(null);
-  const updateId=(id)=>setSelectedId(id)
-  
+  const updateId = (id) => setSelectedId(id);
+
   return (
     <>
       <div className={style.mainDiv}>
@@ -131,26 +159,49 @@ setCount(100)
         return (
           <>
             <div key={tweetPost.id} className={style.maindiv}>
-              <div className={style.profile}>{tweetPost.profile}</div>
-              <div className={style.namecss}>
-                <div style={{ fontWeight: "700", fontSize: "15px" }}>
-                  {tweetPost.name}
-                </div>{" "}
-                <GoVerified style={{ color: "#00acee", fontSize: "16px" }} />
-                {/* <span style={{ fontSize: "11px" }}> */}
-                {tweetPost.handlerName}
-                {/* </span> */}
+              <div className={style.container}>
+                <div  onClick={ ()=>xyz(({
+                name  : tweetPost.name,
+                handlerName : tweetPost.handlerName  ,
+                organization : tweetPost.organization,
+                tweetText : tweetPost.tweetText,
+                tweetPic : tweetPost.tweetPic,
+              
+                tweetCount : tweetPost.tweetCount,
+                retweetCount : tweetPost.retweetCount,
+                likesCount : tweetPost.likesCount,
+                viewsCount : tweetPost.viewsCount,
+                followers : tweetPost.followers,
+                followings : tweetPost.followings,
+                tweets : tweetPost.tweets
+                
+                
+              } )) } > <Avatar   className={style.profile} src={tweetPost.profile} /></div>
+                <div className={style.namecss}>
+                  <div>
+                    <span
+                      style={{
+                        fontWeight: "700",
+                        fontSize: "15px",
+                        paddingRight: ".3rem",
+                      }}
+                    >
+                      {tweetPost.name}
+                      <GoVerified
+                        style={{ color: "#00acee", fontSize: "14px" }}
+                      />
+                    </span>{" "}
+                    {tweetPost.handlerName}
+                  </div>
+                </div>
               </div>
               <p className={style.paraorg}>{tweetPost.organization}</p>
               <p className={style.para}>{tweetPost.tweetText}</p>
               <div>
                 {<img src={tweetPost.tweetPic} className={style.picdiv} />}
               </div>
-          
-      <span>
-        <Dialog open={open} onClose={handleClose}>
-          <img src="" alt="" className={style.BigPhoto} />
 
+<<<<<<< HEAD
           <textarea
             className={style.ForTweet}
             placeholder="What is happening ?"
@@ -186,14 +237,65 @@ setCount(100)
             className={style.btns}
             image={<MdOutlinePoll style={{ fontSize: "15px" }} />}
           />
+=======
+              <span>
+                <Dialog open={open} onClose={handleClose}>
+                  <img
+                    src="https://www.imgstatus.com/wp-content/uploads/2019/11/Whastapp-Dp-Joker.jpg"
+                    alt=""
+                    className={style.Photo1}
+                  />
+>>>>>>> 1ce1414c5e4727caa79e7fd802411656ebb0d08d
 
-          <Buttons
-            className={style.btns}
-            image={<FiShare style={{ fontSize: "15px" }} />}
-          />
-        </div>
-      </span>
-      </div>
+                  <textarea
+                    className={style.ForTweet}
+                    placeholder="What is happening ?"
+                  />
+                  <DialogActions>
+                    <Buttons
+                      className={style.btnTweet}
+                      btnNext={handleClose}
+                      Sign={"Reply"}
+                    />
+                  </DialogActions>
+                </Dialog>
+                <div className={style.socialbtn}>
+                  <Buttons
+                    className={style.btns}
+                    btnNext={handleClickOpen}
+                    image={<FaRegComment style={{ fontSize: "15px" }} />}
+                  />
+                  <Buttons
+                    className={style.btns}
+                    image={<AiOutlineRetweet style={{ fontSize: "15px" }} />}
+                  />
+                  <div>
+                    <Buttons
+                      btnNext={() => {
+                        updateId(tweetPost.id);
+                      }}
+                      className={style.btns}
+                      image={
+                        <CiHeart
+                          style={{ fontSize: "15px" }}
+                          onClick={addCount}
+                        />
+                      }
+                    />
+                    {count}
+                  </div>
+                  <Buttons
+                    className={style.btns}
+                    image={<MdOutlinePoll style={{ fontSize: "15px" }} />}
+                  />
+
+                  <Buttons
+                    className={style.btns}
+                    image={<FiShare style={{ fontSize: "15px" }} />}
+                  />
+                </div>
+              </span>
+            </div>
           </>
         );
       })}
