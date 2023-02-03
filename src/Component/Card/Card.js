@@ -16,31 +16,32 @@ import { GoVerified } from "react-icons/go";
 // import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import { FiShare } from "react-icons/fi";
 import { MdOutlinePoll } from "react-icons/md";
-import { isTweetPost, newtweet, userProfile } from "../../Recoil/atom";
-import { useRecoilState } from "recoil";
+import { isTweetPost, newtweet, userProfile,indexAtom} from "../../Recoil/atom";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useNavigate} from "react-router-dom";
 import { Avatar } from "@mui/material";
 
-export default function Card() {
+export default function Card({children}) {
   const [count, setCount] = useState(100);
+  const [countForRender,setCountForRender]=useState(0);
   const [open, setOpen] = useState(false);
   const [tweetText, setTweetText] = useState("");
   const [post, setPost] = useState(tweetPosts);
   const inputRef = useRef(null);
   const [image, setImage] = useState("");
-<<<<<<< HEAD
-  function addCount() {
-    if(count===100){
-      setCount(101)
-      
-    }
-    else if (count==101)
-setCount(100)
-=======
   const nevigate = useNavigate();
   const [newPost, setNewPost] = useRecoilState(isTweetPost);
   const [newProfile, setNewProfile] = useRecoilState(userProfile);
-  const [tweets,setTweets]=useRecoilState(newtweet)
+   const [tweets,setTweets]=useRecoilState(newtweet)
+  const index= useRecoilValue(indexAtom)
+  
+  // useEffect(()=>{
+  //   if(  localStorage.setItem('key',JSON.stringify(tweets))){
+  //     const getTweet=JSON.parse(localStorage.getItem('key'))
+    
+  //   }
+  // },[])
+  const getTweet=JSON.parse(localStorage.getItem('key'))
   useEffect(() => {
     fetchData();
   },[newPost]);
@@ -53,19 +54,50 @@ setCount(100)
     setNewProfile(dataName);
     nevigate("/publicpage");
   }
-  function addCount() {
-    if (count === 100) {
-      setCount(101);
-    } else if (count == 101) setCount(100);
->>>>>>> 1ce1414c5e4727caa79e7fd802411656ebb0d08d
+  console.log(post.map((x)=>x.id))
+        
+  function handleLike(takeLikes) {
+    //console.log(takeLikes.Index)
+  //  console.log(takeLikes.Data)
+    if (post[takeLikes.Index].inrDcr === false) {
+      post[takeLikes.Index].likesCount = takeLikes.Data + 1;
+
+      setCountForRender(countForRender + 1);
+      post[takeLikes.Index].inrDcr = true;
+
+    }
+
+    
+    else {
+      post[takeLikes.Index].likesCount = takeLikes.Data - 1;
+
+      setCountForRender(countForRender + 1);
+      post[takeLikes.Index].inrDcr = false;
+    }
   }
-  const handleClickOpen = () => {
-    setOpen(true);
+
+  const handleClickOpen = (selectedId) => {
+    alert('hiiiii')
+   post.map((x)=>{
+    if(x.id!==selectedId){
+      setOpen(true)
+    }
+   })
+
+      
+    
+    
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleClose = (selectedId) => {
+   tweetPosts.map((x)=>{
+      if(x.id!==selectedId){
+      
+setOpen(false)}
+      
+    })
   };
+ 
 
   function GetTweet(e) {
     setTweetText(e.target.value);
@@ -87,8 +119,8 @@ setCount(100)
     const obj = {
       id: Math.random(),
       profile:"https://www.imgstatus.com/wp-content/uploads/2019/11/Whastapp-Dp-Joker.jpg" ,
-      name: list[0].name,
-      handlerName: "@" + list[0].email,
+      name: list[index].name,
+      handlerName: list[index].email,
       organization: "",
       tweetText: tweetText,
       tweetPic: image,
@@ -109,13 +141,13 @@ setCount(100)
    
     setTweetText("");
     setTweets([obj,...tweets])
+    localStorage.setItem('key',JSON.stringify(tweets))
     setImage("");
     inputRef.current.value = "";
     
   }
   console.log(tweets)
-  const [selectedId, setSelectedId] = useState(null);
-  const updateId = (id) => setSelectedId(id);
+
 
   return (
     <>
@@ -155,12 +187,12 @@ setCount(100)
           </button>
         </div>{" "}
       </div>
-      {post.map((tweetPost) => {
+      {getTweet.map((tweetPost,i) => {
         return (
           <>
-            <div key={tweetPost.id} className={style.maindiv}>
+            <div key={tweetPost.id}  className={style.maindiv}>
               <div className={style.container}>
-                <div  onClick={ ()=>xyz(({
+                <div className={style.Top} onClick={ ()=>xyz(({
                 name  : tweetPost.name,
                 handlerName : tweetPost.handlerName  ,
                 organization : tweetPost.organization,
@@ -195,49 +227,12 @@ setCount(100)
                   </div>
                 </div>
               </div>
-              <p className={style.paraorg}>{tweetPost.organization}</p>
+              {/* <p className={style.paraorg}>{tweetPost.organization}</p> */}
               <p className={style.para}>{tweetPost.tweetText}</p>
               <div>
                 {<img src={tweetPost.tweetPic} className={style.picdiv} />}
               </div>
 
-<<<<<<< HEAD
-          <textarea
-            className={style.ForTweet}
-            placeholder="What is happening ?"
-          />
-          <DialogActions>
-            <Buttons
-              className={style.btns}
-              btnNext={handleClose}
-              image={<FaRegComment className={style.Comment} />}
-            />
-          </DialogActions>
-        </Dialog>
-        <div className={style.socialbtn}>
-          <Buttons
-            className={style.btns}
-            btnNext={handleClickOpen}
-            image={<FaRegComment style={{ fontSize: "15px" }} />}
-          />
-          <Buttons
-            className={style.btns}
-            image={<AiOutlineRetweet style={{ fontSize: "15px" }} />}
-          />
-          <div>
-          <Buttons
-             btnNext={() => {
-              updateId(tweetPost.id);
-            }}
-            className={style.btns}
-            image={<CiHeart style={{ fontSize: "15px" }}  onClick={addCount}/>}
-          />
-          {count}</div>
-          <Buttons
-            className={style.btns}
-            image={<MdOutlinePoll style={{ fontSize: "15px" }} />}
-          />
-=======
               <span>
                 <Dialog open={open} onClose={handleClose}>
                   <img
@@ -245,7 +240,6 @@ setCount(100)
                     alt=""
                     className={style.Photo1}
                   />
->>>>>>> 1ce1414c5e4727caa79e7fd802411656ebb0d08d
 
                   <textarea
                     className={style.ForTweet}
@@ -259,7 +253,9 @@ setCount(100)
                     />
                   </DialogActions>
                 </Dialog>
-                <div className={style.socialbtn}>
+                <div className={style.socialbtn}  onClick={() => {
+                        
+                      }}>
                   <Buttons
                     className={style.btns}
                     btnNext={handleClickOpen}
@@ -271,15 +267,24 @@ setCount(100)
                   />
                   <div>
                     <Buttons
-                      btnNext={() => {
-                        updateId(tweetPost.id);
-                      }}
+                     
+                      className={style.btns}
+                      image={
+                      <div>
+                    <Buttons
+                      btnNext={() =>
+                    handleLike({ Data: tweetPost.likesCount, Index: i })
+                  }
                       className={style.btns}
                       image={
                         <CiHeart
                           style={{ fontSize: "15px" }}
-                          onClick={addCount}
+                          
                         />
+                      }
+                    />
+                    {tweetPost.likesCount}
+                  </div> 
                       }
                     />
                     {count}
@@ -296,6 +301,7 @@ setCount(100)
                 </div>
               </span>
             </div>
+            {children}
           </>
         );
       })}

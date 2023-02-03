@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -33,6 +33,13 @@ export default function Registration() {
 
   const [login, setLogin] = useRecoilState(isLoginAtom);
   //  const setLogin=useRecoilState(isLoginAtom)
+  useEffect(()=>{
+            if(localStorage.getItem('UserDetail')){
+              let allUserDetail=JSON.parse(localStorage.getItem('UserDetail'))
+              console.log(allUserDetail,'hellooo')
+              setInfo(allUserDetail)
+            } 
+  },[])
   const tohome = useNavigate();
   function ToggleEU() {
     setToggle(!toggle);
@@ -48,7 +55,7 @@ export default function Registration() {
   }
   function handlePassword(inputPassword) {
     setPassword(inputPassword);
-  }
+  } 
   function submitFunction() {
     const data = {
       name,
@@ -76,23 +83,17 @@ export default function Registration() {
       return;
     }
 
-    info.unshift(data);
-    setInfo(info);
+    info.push(data);
+    setInfo([...info]);
     localStorage.setItem("UserDetail", JSON.stringify(info));
     alert("succesfully registered!");
     setLogin(true);
     tohome("/");
     setName("");
     setEmail("");
-    setPhone("");
-    setPassword("");
-
-    //   setLogin({
-    //     key : 'IsLoggedin' ,
-    //     default : true
-    // })
-
-    console.log(login);
+    setPhone ("");
+    setPassword("");                         
+    
   }
 
   return (

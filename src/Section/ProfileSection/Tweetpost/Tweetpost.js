@@ -1,6 +1,9 @@
 import React from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-
+import { FiShare } from "react-icons/fi";
+import { MdOutlinePoll } from "react-icons/md";
+import { AiOutlineRetweet } from "react-icons/ai"
+import { FaRegComment } from "react-icons/fa";
 import { Avatar } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import SyncIcon from "@mui/icons-material/Sync";
@@ -10,6 +13,7 @@ import UploadIcon from "@mui/icons-material/Upload";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import style2 from "./Tweetpost.module.css";
 import { userTweet } from "../../../Recoil/atom";
+import { CiHeart } from "react-icons/ci";
 // import CustomButton from "../../../Atom/Button/CustomButton";
 function Tweetpost() {
   const tweetPostData = useRecoilValue(userTweet);
@@ -48,22 +52,22 @@ function Tweetpost() {
         <div className={style2.icons}>
           <span>
             {tweetPostData.tweetCount}
-            <ChatBubbleOutlineIcon />
+            <FaRegComment style={{fontSize:"17px"}} />
           </span>
           <span>
             {tweetPostData.retweetCount}
-            <SyncIcon />
+            <AiOutlineRetweet style={{fontSize:"17px"}} />
           </span>
           <span>
             {tweetPostData.likesCount}
-            <FavoriteBorderIcon />
+            <CiHeart />
           </span>
           <span>
             {tweetPostData.viewsCount}
-            <PollIcon />
+            <MdOutlinePoll style={{fontSize:"17px"}} />
           </span>
 
-          <UploadIcon />
+          <FiShare style={{fontSize:"17px"}} />
         </div>
       </div>
       <div className={style2.wrapper}>
@@ -71,6 +75,49 @@ function Tweetpost() {
           <div>
             <Avatar
               className={style2.avatar}
+              src="https://www.postoast.com/wp-content/uploads/2022/06/Durgesh-Kumar-Villain-panchayat.jpg"
+            />
+          </div>
+
+          <div className={style2.innercontainer}>
+            <span className={style2.text}>
+              <h3>
+                Banrakas
+                <VerifiedIcon style={{ color: "#00acee" }} />
+              </h3>
+            </span>
+            <p>Dekh raha hai binod</p>
+          </div>
+        </div>
+        <div className={style2.icons}>
+          <span>
+            {tweetPostData.tweetCount}
+            <FaRegComment style={{fontSize:"17px"}} />
+          </span>
+          <span>
+            {tweetPostData.retweetCount}
+            <AiOutlineRetweet style={{ fontSize: "17px" }} />
+          </span>
+          <span>
+            {tweetPostData.likesCount}
+            <CiHeart
+              style={{ fontSize: "17px" }}
+
+            />
+          </span>
+          <span>
+            {tweetPostData.viewsCount}
+            <MdOutlinePoll style={{ fontSize: "17px" }} />
+          </span>
+          <FiShare style={{fontSize:"17px"}}/>
+        </div>
+      </div>
+      <div className={style2.wrapper}>
+        <div className={style2.container1}>
+          <div>
+            <Avatar
+              className={style2.avatar}
+
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvYUsv-26LipJb-wJ7h8QVbOM9_MfdFSMKw&usqp=CAU"
             />
           </div>
@@ -82,66 +129,31 @@ function Tweetpost() {
                 <VerifiedIcon style={{ color: "#00acee" }} />
               </h3>
             </span>
-            <p>Ha bhaiya</p>
+            <p>Han bhaiya </p>
           </div>
         </div>
         <div className={style2.icons}>
           <span>
             {tweetPostData.tweetCount}
-            <ChatBubbleOutlineIcon />
+            <FaRegComment style={{fontSize:"17px"}} /> 
           </span>
           <span>
             {tweetPostData.retweetCount}
-            <SyncIcon />
+            <AiOutlineRetweet style={{fontSize:"17px"}}/>
           </span>
           <span>
             {tweetPostData.likesCount}
-            <FavoriteBorderIcon />
-          </span>
-          <span>
-            {tweetPostData.viewsCount}
-            <PollIcon />
-          </span>
-          <UploadIcon />
-        </div>
-      </div>
-      <div className={style2.wrapper}>
-        <div className={style2.container1}>
-          <div>
-            <Avatar
-              className={style2.avatar}
-              src=""
-            />
-          </div>
+            <CiHeart
+              style={{ fontSize: "17px" }}
 
-          <div className={style2.innercontainer}>
-            <span className={style2.text}>
-              <h3>
-                Banrakas
-                <VerifiedIcon style={{ color: "#00acee" }} />
-              </h3>
-            </span>
-            <p>Dekh raha h binod</p>
-          </div>
-        </div>
-        <div className={style2.icons}>
-          <span>
-            {tweetPostData.tweetCount}
-            <ChatBubbleOutlineIcon />
-          </span>
-          <span>
-            {tweetPostData.retweetCount}
-            <SyncIcon />
-          </span>
-          <span>
-            {tweetPostData.likesCount}
-            <FavoriteBorderIcon />
+            />
           </span>
           <span>
             {tweetPostData.viewsCount}
-            <PollIcon />
+
+            <MdOutlinePoll style={{ fontSize: "17px" }}  />
           </span>
-          <UploadIcon />
+          <FiShare style={{ fontSize: "17px" }} />
         </div>
       </div>
     </>

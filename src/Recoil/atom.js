@@ -38,3 +38,7 @@ export const isTweetPost = atom({
     key:"tweets",
     default:[],
   })
+  export const indexAtom= atom({
+    key:'indices',
+    default:0,
+  })

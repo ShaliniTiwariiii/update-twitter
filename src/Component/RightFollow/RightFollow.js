@@ -73,25 +73,16 @@
 
 //  export default RightFollow
 
-<<<<<<< HEAD
 
 import { Avatar } from '@mui/material';
 import React, { useState } from 'react'
 import Buttons from '../../Atom/Button/Buttons';
 import style from './RightFollow.module.css'
 import { Follow } from '../../const';
-=======
-import { Avatar } from "@mui/material";
-import React, { useState } from "react";
-import Buttons from "../../Atom/Button/Buttons";
-import style from "./RightFollow.module.css";
-import { Follow } from "../../const";
->>>>>>> 1ce1414c5e4727caa79e7fd802411656ebb0d08d
 // import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 function RightFollow() {
   const [trending, setTrendings] = useState(Follow.slice(0, 2));
   const [isShowingAllTrendings, setIsShowingAllTrendings] = useState(false);
-<<<<<<< HEAD
     const handleClick = (id) => {
         const updatedFollowContainer = Follow.map((item) => {
           if (item.id === id) {
@@ -130,7 +121,8 @@ function RightFollow() {
                   btnNext={() => handleClick(data.id)}
                   key={data.id}
                   className={style.followButton}
-                  disabled={data.followed}/>
+                  />
+                  {/* //disabled={data.followed} */}
        </div> 
        </div>
      )}
@@ -143,59 +135,6 @@ function RightFollow() {
     </div>
  
   )
-=======
-  const handleClick = (id) => {
-    const updatedFollowContainer = Follow.map((item) => {
-      if (item.id === id) {
-        item.followed = !item.followed;
-      }
-      return item;
-    });
-    // setFollowContainer(updatedFollowContainer);
-    setTrendings(updatedFollowContainer);
-  };
-
-  function handleRequestSeeAll() {
-    setIsShowingAllTrendings(!isShowingAllTrendings);
-
-    if (isShowingAllTrendings) {
-      return setTrendings(Follow.slice(0, 2));
-    }
-    setTrendings(Follow);
-  }
-  return (
-    <div className={style.mainParent}>
-      <h2> Who to follow</h2>
-      {trending.map((data) => (
-        <div className={style.wrapper}>
-          <div className={style.img}>
-            <Avatar alt="Remy Sharp" src={data.src} />
-            <h3>{data.text}</h3>
-            <h6>{data.text2}</h6>
-          </div>
-          <div className={style.btntxt}>
-            <Buttons
-              Sign={data.followed ? "Following" : "Follow"}
-              btnNext={() => handleClick(data.id)}
-              key={data.id}
-              className={style.followButton}
-              disabled={data.followed}
-            />
-          </div>
-        </div>
-      ))}
-      {/* <div style={{marginLeft:"1.3rem",color:"#1D9BF0"}}>Show more</div> */}
-      {
-        <div
-          style={{ marginLeft: "1.3rem", color: "#1D9BF0" }}
-          onClick={handleRequestSeeAll}
-        >
-          {isShowingAllTrendings ? "Show Less" : "Show More"}
-        </div>
-      }
-    </div>
-  );
->>>>>>> 1ce1414c5e4727caa79e7fd802411656ebb0d08d
 }
 
 export default RightFollow;

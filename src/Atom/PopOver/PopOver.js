@@ -4,10 +4,11 @@ import Popover from "@mui/material/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import style from "./pupup.module.css";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
-import { isLoginAtom } from "../../Recoil/atom";
+import { isLoginAtom,indexAtom} from "../../Recoil/atom";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 const PopOver = () => {
+   const[index,setIndex]=useRecoilState(indexAtom)  
   const tologin = useNavigate();
   const [loginStatus, setLoginStatus] = useRecoilState(isLoginAtom);
   function Loggedout() {
@@ -27,8 +28,8 @@ const PopOver = () => {
               className={style.photo}
             />{" "}
             <div style={{ display: "flex" ,flexDirection:"column"}}>
-              <span style={{ fontWeight: "600" }}>{x[0].name}</span>
-              <span style={{fontSize:"12px"}}>{x[0].email}</span>
+              <span style={{ fontWeight: "600" }}>{x[index].name}</span>
+              <span style={{fontSize:"12px"}}>{x[index].email}</span>
             </div>{" "}
             <MoreHorizOutlinedIcon />
           </button>

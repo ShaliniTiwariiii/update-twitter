@@ -13,9 +13,8 @@ function Tweetpage() {
   return (
     <div>
           <div className={style.Main}>
-      <div className={style.container}>
+
         <LeftSection />
-      </div>
       <div className={style.middleContainer}>
      <Tweetpost/> 
       </div>

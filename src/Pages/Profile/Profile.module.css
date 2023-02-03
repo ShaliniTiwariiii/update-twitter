@@ -15,9 +15,14 @@ position: sticky;
 .midDiv{
     display: flex;
     flex-direction: row;
+    overflow-y: scroll;
 }
 .rightDiv{
     /* display: flex; */
     /* flex-direction: row; */
     position: sticky;
+}
+
+.midDiv::-webkit-scrollbar{
+    width: 0;
 }

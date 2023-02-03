@@ -4,11 +4,16 @@ import style from "../ProfileSection.module.css";
 import WestIcon from "@mui/icons-material/West";
 import Buttons from "../../../Atom/Button/Buttons";
 import { useNavigate } from "react-router-dom";
-
+import { CiHeart } from "react-icons/ci";
+import { FiShare } from "react-icons/fi";
+import { MdOutlinePoll } from "react-icons/md";
+import { FaRegComment } from "react-icons/fa";
+import { AiOutlineRetweet } from "react-icons/ai";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Avatar } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import SyncIcon from "@mui/icons-material/Sync";
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PollIcon from "@mui/icons-material/Poll";
 import UploadIcon from "@mui/icons-material/Upload";
@@ -74,13 +79,25 @@ function Unknownuser() {
             <Buttons className={style.btn} Sign={"Edit profile"} />
           </span>
         </div>
+        <div >
         <div className={style.textcontaint}>
-          <h4>{`${"Name:-"}${unknownProfileData.name}`}</h4>
-          <h5>{`${"@"}${unknownProfileData.handlerName}`}</h5>
-          <h5>{`${"tweetCount:-"}${unknownProfileData.tweetCount}`}</h5>
-          <h5>{`${"likescount:-"}${unknownProfileData.likesCount}`}</h5>
-          <h5>{`${"followers:-"}${unknownProfileData.followers}`}</h5>
-          <h5>{`${"followings:-"}${unknownProfileData.followings}`}</h5>
+        <h4>{`${unknownProfileData.name}`}</h4>
+          <h6 style={{marginLeft:'0rem'}}>{`${unknownProfileData.handlerName}`}</h6>
+         
+          
+        </div>
+         
+         
+           <span className={style.join}
+           style={{marginTop:'-1rem',marginLeft:'1rem'}}
+           ><CalendarMonthOutlinedIcon/> Joined January 2022</span>
+         <div style={{display:'flex',gap:'1rem',marginLeft:'1rem',marginTop:'1rem'}}> <div>{`${unknownProfileData.followers} ${"Followers"}`}</div>
+          <div>{`${unknownProfileData.followings} ${"Followings"}`}</div></div>
+          <div className={style.heading} style={{marginTop:'4rem'}}>
+        <span>Tweets</span>
+        <span>Tweets&replies</span>
+        <span>Media</span>
+        <span>Likes</span> </div>
         </div>
       </div>
       <div>
@@ -149,14 +166,14 @@ function Unknownuser() {
                       </span>
                       <span>
                         {x.likesCount}
-                        <FavoriteBorderIcon />
+                        <CiHeart  style={{ fontSize: "15px" }} />
                       </span>
                       <span>
                         {x.viewsCount}
-                        <PollIcon />
+                        <MdOutlinePoll style={{ fontSize: "15px" }} />
                       </span>
 
-                      <UploadIcon />
+                      <FiShare style={{ fontSize: "15px" }} />
                     </div>
                   </div>
                 </div>

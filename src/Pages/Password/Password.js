@@ -74,7 +74,7 @@
 
 import React, { useState } from 'react'
 
-import { isLoginAtom } from '../../Recoil/atom';
+import { isLoginAtom,indexAtom } from '../../Recoil/atom';
 import { useRecoilState } from 'recoil';
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -84,6 +84,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import style from "./Password.module.css"
 import Buttons from '../../Atom/Button/Buttons';
 import Input from '../../Atom/Input/Input';
+ 
 import { Link,useNavigate } from     'react-router-dom';
 export default function Password() {
   let getData = JSON.parse(localStorage.getItem("UserDetail"));
@@ -91,7 +92,8 @@ export default function Password() {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [data, setData] = useState("");
-  const [login, setLogin] = useRecoilState(isLoginAtom)        
+  const [login, setLogin] = useRecoilState(isLoginAtom) 
+  const[index,setIndex]=useRecoilState(indexAtom)       
   const tohome=useNavigate()
   
   function handledata(inputData) {
@@ -111,7 +113,12 @@ export default function Password() {
       alert("Success")
       tohome("/")
     }
-  }
+    const newArr1 = getData.findIndex(
+      (x) => x.password === data
+    );
+    setIndex(newArr1)
+   
+  } console.log(index,'********')
   return (
     <Dialog
       fullScreen={fullScreen}
