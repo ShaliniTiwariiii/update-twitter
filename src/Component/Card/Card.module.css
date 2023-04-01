@@ -99,7 +99,7 @@ img{
    /* margin-bottom: -12rem; */
 }
 .mainDiv{
-   height: 11rem;
+   height: auto;
 
 }
 .Photo1{
@@ -149,3 +149,9 @@ overflow:hidden;
 /* .avatar{
    z-index: -1;
 } */
+
+@media screen and (max-width:660px){
+   .mainDiv{
+      display: none;
+   }
+}

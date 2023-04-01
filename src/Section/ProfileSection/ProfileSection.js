@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import style from "./ProfileSection.module.css";
 import { useNavigate } from "react-router-dom";
 import WestIcon from "@mui/icons-material/West";
-// import Buttons from "../../Atom/Button/Buttons";
 import { newtweet,indexAtom } from "../../Recoil/atom";
 import { CiHeart } from "react-icons/ci";
 import { FaRegComment } from "react-icons/fa";
@@ -24,8 +23,10 @@ function ProfileSection() {
   const Data=JSON.parse(localStorage.getItem("UserDetail"))
   let tweets=useRecoilValue(newtweet)
   let index=useRecoilValue(indexAtom)
-  //console.log(tweets)
-  function addCount() {
+ 
+  function addCount(i) {
+  
+   
     if (count === 100) {
       setCount(101);
     } else if (count == 101) setCount(100);
@@ -143,7 +144,7 @@ function ProfileSection() {
                   image={
                     <CiHeart
                       style={{ fontSize: "15px" }}
-                      onClick={addCount}
+                      onClick={()=>addCount(tweetPost)}
                     />
                   }
                 />

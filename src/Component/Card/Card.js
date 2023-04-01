@@ -16,13 +16,13 @@ import { GoVerified } from "react-icons/go";
 // import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import { FiShare } from "react-icons/fi";
 import { MdOutlinePoll } from "react-icons/md";
-import { isTweetPost, newtweet, userProfile,indexAtom} from "../../Recoil/atom";
+import { isTweetPost, newtweet, userProfile,indexAtom, forPassingId} from "../../Recoil/atom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useNavigate} from "react-router-dom";
 import { Avatar } from "@mui/material";
 
-export default function Card({children}) {
-  const [count, setCount] = useState(100);
+export default function Card() {
+
   const [countForRender,setCountForRender]=useState(0);
   const [open, setOpen] = useState(false);
   const [tweetText, setTweetText] = useState("");
@@ -33,7 +33,9 @@ export default function Card({children}) {
   const [newPost, setNewPost] = useRecoilState(isTweetPost);
   const [newProfile, setNewProfile] = useRecoilState(userProfile);
    const [tweets,setTweets]=useRecoilState(newtweet)
-  const index= useRecoilValue(indexAtom)
+  const indices= useRecoilValue(indexAtom)
+  const [index, setIndex] = useRecoilState(forPassingId)
+  const[storeArray,setStoreArray]=useState("")
   
   // useEffect(()=>{
   //   if(  localStorage.setItem('key',JSON.stringify(tweets))){
@@ -41,62 +43,37 @@ export default function Card({children}) {
     
   //   }
   // },[])
-  const getTweet=JSON.parse(localStorage.getItem('key'))
+ 
   useEffect(() => {
     fetchData();
-  },[newPost]);
+  },[]);
 
   function fetchData() {
     setPost(tweetPosts);
   }
 
   function xyz(dataName) {
-    setNewProfile(dataName);
-    nevigate("/publicpage");
+   setNewProfile(dataName)
+    nevigate("/publicpage")
   }
-  console.log(post.map((x)=>x.id))
-        
-  function handleLike(takeLikes) {
-    //console.log(takeLikes.Index)
-  //  console.log(takeLikes.Data)
-    if (post[takeLikes.Index].inrDcr === false) {
-      post[takeLikes.Index].likesCount = takeLikes.Data + 1;
+  //console.log(post.map((x)=>x.id))
+      
 
-      setCountForRender(countForRender + 1);
-      post[takeLikes.Index].inrDcr = true;
 
+  const handleClickOpen = (i) => {
+    setOpen(true);
+    setIndex(i)
+    console.log(i)
+ }
+
+  const handleClose = () => {
+    setOpen(false)
+    let newObj1 = {
+      tweetComment: storeArray,
     }
-
-    
-    else {
-      post[takeLikes.Index].likesCount = takeLikes.Data - 1;
-
-      setCountForRender(countForRender + 1);
-      post[takeLikes.Index].inrDcr = false;
-    }
+    post[index].tweetComment = [...post[index].tweetComment, newObj1];
+    console.log(storeArray)
   }
-
-  const handleClickOpen = (selectedId) => {
-    alert('hiiiii')
-   post.map((x)=>{
-    if(x.id!==selectedId){
-      setOpen(true)
-    }
-   })
-
-      
-    
-    
-  };
-
-  const handleClose = (selectedId) => {
-   tweetPosts.map((x)=>{
-      if(x.id!==selectedId){
-      
-setOpen(false)}
-      
-    })
-  };
  
 
   function GetTweet(e) {
@@ -119,15 +96,16 @@ setOpen(false)}
     const obj = {
       id: Math.random(),
       profile:"https://www.imgstatus.com/wp-content/uploads/2019/11/Whastapp-Dp-Joker.jpg" ,
-      name: list[index].name,
-      handlerName: list[index].email,
+      name: list[indices].name,
+      handlerName: list[indices].email,
       organization: "",
       tweetText: tweetText,
+      inrDcr:false,
       tweetPic: image,
-      tweetCount: 100,
-      retweetCount: 100,
+      tweetCount: 0,
+      retweetCount: 0,
       likesCount: 0,
-      viewsCount: "102k",
+      viewsCount: "0",
       followers: 200,
       followings: 400,
       joinedDate: "22 dec 2022",
@@ -136,19 +114,50 @@ setOpen(false)}
     if (obj.tweetText !== "") {
       setPost([obj,...tweetPosts]);
       tweetPosts.unshift(obj);
+      localStorage.setItem('key',JSON.stringify(post))
     }
    
    
     setTweetText("");
     setTweets([obj,...tweets])
-    localStorage.setItem('key',JSON.stringify(tweets))
+    
+   
+    setPost([...tweets,...post])
+  
     setImage("");
-    inputRef.current.value = "";
+    inputRef.current.value = ""
     
   }
+  let getTweet=[]
+  getTweet=JSON.parse(localStorage.getItem('key'))
   console.log(tweets)
+  function HandleInput(e) {
+    setStoreArray(e.target.value)
+  }
+  function handleLike(takeLikes) {
+    console.log(takeLikes)
+    console.log(takeLikes.Index)
+    console.log(takeLikes.Data)
+    console.log(getTweet)
+    console.log(getTweet[takeLikes.Index].inrDcr)
+    if (getTweet[takeLikes.Index].inrDcr === false) {
+   
+      getTweet[takeLikes.Index].likesCount = takeLikes.Data + 1;
+console.log(getTweet[takeLikes.Index].likesCount )
+      setCountForRender(countForRender + 1);
+      getTweet[takeLikes.Index].inrDcr = true;
+console.log(getTweet[takeLikes.Index].inrDcr )
+    }
 
+    
+    else {
+      getTweet[takeLikes.Index].likesCount = takeLikes.Data - 1;
 
+      setCountForRender(countForRender + 1);
+      getTweet[takeLikes.Index].inrDcr = false;
+    }
+  }
+  console.log(getTweet) 
   return (
     <>
       <div className={style.mainDiv}>
@@ -162,6 +171,11 @@ setOpen(false)}
           onChange={GetTweet}
           placeholder="What's happening"
         />
+         {image && (
+          <div className={style.imageWrapper}>
+            <img src={image} height="50%" width="50%" alt="foo" />
+          </div>
+        )}
         {/* <p style={{ color: "#00acee", fontWeight: "600" }}>
                 <PublicOutlinedIcon />
                 Everyone can reply
@@ -187,6 +201,8 @@ setOpen(false)}
           </button>
         </div>{" "}
       </div>
+      {/* {getTweet.length ? (
+      <> */}
       {getTweet.map((tweetPost,i) => {
         return (
           <>
@@ -198,7 +214,7 @@ setOpen(false)}
                 organization : tweetPost.organization,
                 tweetText : tweetPost.tweetText,
                 tweetPic : tweetPost.tweetPic,
-              
+               profile:tweetPost.profile,
                 tweetCount : tweetPost.tweetCount,
                 retweetCount : tweetPost.retweetCount,
                 likesCount : tweetPost.likesCount,
@@ -244,6 +260,7 @@ setOpen(false)}
                   <textarea
                     className={style.ForTweet}
                     placeholder="What is happening ?"
+                    onChange={HandleInput}
                   />
                   <DialogActions>
                     <Buttons
@@ -253,46 +270,39 @@ setOpen(false)}
                     />
                   </DialogActions>
                 </Dialog>
-                <div className={style.socialbtn}  onClick={() => {
-                        
-                      }}>
-                  <Buttons
+                <div className={style.socialbtn}>
+                  <div><Buttons
                     className={style.btns}
-                    btnNext={handleClickOpen}
+                    btnNext={()=>handleClickOpen(i)}
                     image={<FaRegComment style={{ fontSize: "15px" }} />}
-                  />
-                  <Buttons
+                  />{tweetPost.tweetCount}
+                  </div>
+                  <div><Buttons
                     className={style.btns}
                     image={<AiOutlineRetweet style={{ fontSize: "15px" }} />}
-                  />
+                  /> {tweetPost.retweetCount}
+                  </div>
+                  
                   <div>
-                    <Buttons
-                     
-                      className={style.btns}
-                      image={
-                      <div>
                     <Buttons
                       btnNext={() =>
                     handleLike({ Data: tweetPost.likesCount, Index: i })
-                  }
+                   }
                       className={style.btns}
                       image={
                         <CiHeart
                           style={{ fontSize: "15px" }}
                           
                         />
-                      }
+                      } 
                     />
-                    {tweetPost.likesCount}
-                  </div> 
-                      }
-                    />
-                    {count}
+                { console.log(tweetPost.likesCount) }  {tweetPost.likesCount}
                   </div>
+                  <div>
                   <Buttons
                     className={style.btns}
                     image={<MdOutlinePoll style={{ fontSize: "15px" }} />}
-                  />
+                  />{tweetPost.viewsCount}</div>
 
                   <Buttons
                     className={style.btns}
@@ -301,10 +311,11 @@ setOpen(false)}
                 </div>
               </span>
             </div>
-            {children}
           </>
         );
       })}
+      {/* </>):
+      <></>} */}
     </>
   );
 }

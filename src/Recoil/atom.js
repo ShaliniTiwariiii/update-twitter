@@ -18,7 +18,10 @@ export const isTweetPost = atom({
     key: "userProfile",
     default: {},
   });
-  
+  export const forPassingId = atom({
+    key: "Passid",
+    default: 1,
+  })
   
   export const isTweet = atom({
     key: "isTweet",
